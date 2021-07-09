@@ -23691,3 +23691,6 @@ info: 2021-07-08T20:32:04.553Z Usuario [admin1] no existe. No puede ser autentic
 info: 2021-07-08T20:32:04.561Z ::1 - POST /user/login HTTP/1.1 400 413 - 31.527 ms
 info: 2021-07-08T20:34:08.065Z Usuario [admin] no existe. No puede ser autenticado
 info: 2021-07-08T20:34:08.070Z ::1 - POST /user/login HTTP/1.1 400 413 - 8.744 ms
+info: 2021-07-09T03:40:56.526Z Escuchando en el puerto 3000
+info: 2021-07-09T03:49:49.498Z Escuchando en el puerto 3000
+info: 2021-07-09T03:51:45.229Z Escuchando en el puerto 3000

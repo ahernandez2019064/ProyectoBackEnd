@@ -20,42 +20,8 @@ const reportRouter = require("./api/recursos/report/report.routes");
 passport.use(authJWT);
 
 
-mongoose.connect('mongodb://localhost:27017/GestorTorneos', {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
-  var name = 'ADMIN';
-  var username = 'ADMIN1';
-  var password = '123456';
-  var rol = 'ROLE_ADMIN';
-  var usuario = new userController();
-
-  usuario.name = name
-  usuario.username = username
-  usuario.password = password
-  usuario.rol = rol
-
-  userController.find({name: usuario.name}).exec((err, usuarioEncontrado)=>{
-      if(usuarioEncontrado && usuarioEncontrado.length >= 1){
-          console.log('El usuario Administrador ya ha sido creado');
-      }else{
-          bcrypt.hash(usuario.password, null, null, (err, passEncriptada)=>{
-              usuario.password = passEncriptada
-              usuario.save((err, usuarioGuardado)=>{
-                  if(err) console.log('Error al guardar este usuario');
-
-                  if(usuarioGuardado){
-                      console.log(usuarioGuardado)
-                  }else{
-                      console.log('No se ha podido guardar correctamente este usuario');   
-                  }
-              })
-          })
-      }
-  })
-
-  app.listen(3000, function(){
-      console.log('El servidor esta corriendo correctamente')
-  })
-}).catch(err => console.log(err));
-mongoose.connection.on("error", () => {
+mongoose.connect('mongodb+srv://Allan:2UqgdQxq@proyectogestortorneos.ip5ad.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+mongoose.connection.on('error', () => {
   log.error("Fallo la conexion a mongodb");
   process.exit(1);
 });
@@ -94,7 +60,7 @@ if (config.ambiente === "prod") {
   app.use(errorHandler.erroresEnDesarrollo);
 }
 
-const server = app.listen(config.puerto, () => {
+const server = app.listen(config.puerto, process.env.PORT || 3000, () => {
   log.info("Escuchando en el puerto 3000");
 });
 
